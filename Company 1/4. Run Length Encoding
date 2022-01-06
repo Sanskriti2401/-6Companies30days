@@ -1,0 +1,45 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+string encode(string src);    
+ 
+int main() {
+	
+	int T;
+	cin>>T;
+	while(T--)
+	{
+		string str;
+		cin>>str;
+		
+		cout<<encode(str)<<endl;
+	}
+	return 0;
+}
+string encode(string s)
+{     
+  int i,n=s.length(),c=1;
+  string ans;
+  if(n==1)
+  return s[0]+to_string(1);
+  for(i=1;i<n;i++)
+  {
+      if(s[i-1]==s[i])
+      {
+          c++;
+      }
+      else
+      {
+          ans+=s[i-1]+to_string(c);
+          c=1;
+      }
+  }
+  
+  if(s[n-1]==s[n-2])
+    ans+=s[n-1]+to_string(c);
+    else
+    ans+=s[n-1]+to_string(1);
+    
+    return ans;
+}     
+ 
