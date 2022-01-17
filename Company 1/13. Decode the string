@@ -1,0 +1,73 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+
+class Solution{
+public:
+    string decodedString(string s){
+        int i,n=s.length(),size,j;
+        string ans,a,num,temp;
+        stack<char>st;
+        
+        for(i=0;i<n;i++)
+        {
+            if(s[i]==']')
+            {
+                a="";
+                temp="";
+                num="";
+                while(st.top()!='[')
+                {
+                   
+                    a=st.top()+a;
+                    st.pop();
+                    
+                }
+                st.pop();
+                while(isdigit(st.top()))
+                {
+                    num=st.top()+num;
+                    st.pop();
+                    if(st.empty())
+                        break;
+                }
+                int size=stoi(num);
+                for(j=1;j<=size;j++)
+                    temp=temp+a;
+                if(st.empty())
+                {
+                    ans=temp;
+                    break;
+                }
+                for(j=0;j<temp.size();j++)
+                    st.push(temp[j]);
+                    
+                
+                
+            }
+            else
+            {
+                st.push(s[i]);
+            }
+            
+            
+        }
+        return ans;
+        
+    }
+    
+};
+
+
+int main(){
+    int t;
+    cin>>t;
+    while(t--){
+        string s;
+        cin>>s;
+        
+        Solution ob;
+        cout<<ob.decodedString(s)<<"\n";
+    }
+    return 0;
+} 
